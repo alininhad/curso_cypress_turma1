@@ -1,0 +1,5 @@
+logs
+node_modules
+packge-lock.json
+cypress/videos/
+cypress/screenshots/logs
