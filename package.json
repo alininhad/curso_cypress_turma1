@@ -4,16 +4,19 @@
     "description": "cypress_turma_1",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/alininhad/curso_cypress_turma1.git"
+        "type": "git",
+        "url": "git+https://github.com/alininhad/curso_cypress_turma1.git"
     },
     "author": "Aline Pereira",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/alininhad/curso_cypress_turma1/issues"
+        "url": "https://github.com/alininhad/curso_cypress_turma1/issues"
     },
-    "homepage": "https://github.com/alininhad/curso_cypress_turma1#readme"
-  }
+    "homepage": "https://github.com/alininhad/curso_cypress_turma1#readme",
+    "devDependencies": {
+        "cypress": "^12.17.3"
+    }
+}
