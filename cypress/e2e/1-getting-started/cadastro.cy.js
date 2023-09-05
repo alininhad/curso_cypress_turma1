@@ -1,9 +1,30 @@
 ///<reference types="cypress")/>
+const faker = require('faker-br');
 
 
 describe('Cadastro deentregador para Buger Eats', () => {
 
     it('Deve efetuar cadastro inserindo CNH com método de entrega Moto;', () => {
+
+
+        //Faker dados usuário
+        const fakerNomeCompleto = `${faker.name.firstName()} ${faker.name.lastName()}`
+        const fakerCpf = faker.br.cpf()
+        const fakerEmail = faker.internet.email()
+        
+        const ddsValidos = ['11', '21', '31', '41', '48', '61']
+        const dddEstado = faker.random.arrayElement(ddsValidos)
+        const telefone = faker.random.number({ min: 10000000, max: 99999999 })
+        const fakerTelefone = `${dddEstado}9${telefone}`
+
+
+
+       //Faker dados endereço
+
+       const fakerCep = faker.address.zipCodeValidByState()
+       const fakerNumero = faker.address.streetAddress().match(/\d+/g).join('')
+       const fakerComplemento = `Apto: ${faker.random.number({ min: 1, max: 300 })} Bloco: ${faker.random.number({ min: 1, max: 2 })}`
+
 
         //Acessa aplicação Buger Eats
         cy.visit('https://buger-eats.vercel.app/')
@@ -17,17 +38,17 @@ describe('Cadastro deentregador para Buger Eats', () => {
 
         //Preenche os dados do usuário
 
-        cy.get('input[placeholder="Nome completo"]').should('be.visible').type('Aline Candido')
-        cy.get('input[placeholder="CPF somente números"]').should('be.visible').type('11122233344456')
-        cy.get('input[name="email"]').should('be.visible').type('test@test.com.br')
-        cy.get('input[name="whatsapp"]').should('be.visible').type('1199995555')
+        cy.get('input[placeholder="Nome completo"]').should('be.visible').type(fakerNomeCompleto)
+        cy.get('input[placeholder="CPF somente números"]').should('be.visible').type(fakerCpf)
+        cy.get('input[name="email"]').should('be.visible').type(fakerEmail)
+        cy.get('input[name="whatsapp"]').should('be.visible').type(fakerTelefone)
 
 
         //Preenche endereço do usuário
-        cy.get('input[placeholder="CEP"]').should('be.visible').type('02472050')
+        cy.get('input[placeholder="CEP"]').should('be.visible').type(fakerCep)
         cy.get('input[type="button"]').should('be.visible').click
-        cy.get('input[placeholder="Número"]').should('be.visible').type('200')
-        cy.get('input[placeholder="Complemento"]').should('be.visible').type('Apto 56')
+        cy.get('input[placeholder="Número"]').should('be.visible').type(fakerNumero)
+        cy.get('input[placeholder="Complemento"]').should('be.visible').type(fakerComplemento)
 
 
         //SEleciona o método entrega
